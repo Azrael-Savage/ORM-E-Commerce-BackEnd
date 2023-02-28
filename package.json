@@ -27,7 +27,6 @@
     "seed": "^0.4.4",
     "sequelize": "^6.29.0"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Azrael-Savage/ORM-E-Commerce-BackEnd.git"

@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-const Product = require('./Product');
 const ProductTag = require('./ProductTag');
+const Product = require('./Product');
 
 class Tag extends Model {}
 
