@@ -1,8 +1,8 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-const Category = require('./Category');
+
 const Tag = require('./Tag');
-const ProductTag = require('./ProductTag');
+
 
 
 class Product extends Model {}
@@ -50,13 +50,11 @@ Product.init(
     modelName: 'product',
   }
 );
-
+const Category = require('./Category');
 Product.belongsTo(Category, {
   foreignKey: 'category_id'
 });
-
-// Define the ProductTag model before using it in the association
-
+const ProductTag = require('./ProductTag');
 Product.belongsToMany(Tag, {
   through: ProductTag,
   foreignKey: 'product_id'

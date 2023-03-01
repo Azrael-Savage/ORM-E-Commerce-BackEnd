@@ -1,21 +1,18 @@
-const sequelize = require('../config/connection');
-const seedCategory = require('./category-seeds');
-const seedProduct = require('./product-seeds');
-const seedTag = require('./tag-seeds');
-const seedProductTag = require('./product-tag-seeds');
+const express = require('express');
+const routes = require('./routes');
+const sequelize = require('./config/connection');
 
-const seedAll = async () => {
-  await sequelize.sync({ force: true });
+const app = express();
+const PORT = process.env.PORT || 3001;
 
-  await seedCategory();
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-  await seedProduct();
+// Routes
+app.use(routes);
 
-  await seedTag();
-
-  await seedProductTag();
-
-  process.exit(0);
-};
-
-seedAll();
+// Start the server and sync the Sequelize models with the database
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log(`App listening on port ${PORT}!`));
+});
