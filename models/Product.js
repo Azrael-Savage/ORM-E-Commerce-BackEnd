@@ -1,10 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-const Tag = require('./Tag');
-
-
-
 class Product extends Model {}
 
 Product.init(
@@ -20,7 +16,7 @@ Product.init(
       allowNull: false
     },
     price: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
       validate: {
         isDecimal: true
@@ -50,11 +46,16 @@ Product.init(
     modelName: 'product',
   }
 );
+
 const Category = require('./Category');
+
 Product.belongsTo(Category, {
   foreignKey: 'category_id'
 });
+
+const Tag = require('./Tag');
 const ProductTag = require('./ProductTag');
+
 Product.belongsToMany(Tag, {
   through: ProductTag,
   foreignKey: 'product_id'
