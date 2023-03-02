@@ -1,9 +1,8 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
 const Product = require('./Product');
 const Category = require('./Category');
 const Tag = require('./Tag');
 const ProductTag = require('./ProductTag');
+
 // Define associations
 Product.belongsTo(Category, {
   foreignKey: 'category_id'
@@ -21,9 +20,4 @@ Tag.belongsToMany(Product, {
   foreignKey: 'tag_id'
 });
 
-module.exports = {
-  Product,
-  Category,
-  Tag,
-  ProductTag
-};
+module.exports = { Product, Category, Tag, ProductTag };
